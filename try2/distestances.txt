@@ -1,0 +1,11 @@
+* File "distances.txt" 
+* Distance data for highways 1949
+Youngstown, OH[4110,8065]115436
+Yankton, SD[4288,9739]12011
+966
+Yakima, WA[4660,12051]49826
+1513 24
+Worcester, MA[4227,7180]161799
+2964 1520 604
+Wisconsin Dells, WI[4363,8977]2521
+1149 1817 48 595

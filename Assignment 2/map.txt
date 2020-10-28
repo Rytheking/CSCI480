@@ -1,0 +1,127 @@
+1: Reading (PA) to Red Bluff (CA) distance:2871
+2: Red Bluff (CA) to Regina (SA) distance:1564
+3: Regina (SA) to Rhinelander (WI) distance:943
+4: Rock Springs (WY) to Roswell (NM) distance:825
+5: Rocky Mount (NC) to Saint Augustine (FL) distance:576
+6: Reno (NV) to Richfield (UT) distance:571
+7: Reading (PA) to Richmond (IN) distance:543
+8: Red Bluff (CA) to Salem (OR) distance:429
+9: San Diego (CA) to Tucson (AZ) distance:423
+10: Savannah (GA) to Selma (AL) distance:413
+11: Rock Springs (WY) to Salida (CO) distance:402
+12: Rochester (MN) to Saint Joseph (MO) distance:402
+13: Salinas (CA) to San Bernardino (CA) distance:374
+14: Rock Springs (WY) to Scottsbluff (NB) distance:358
+15: Scottsbluff (NB) to Sheridan (WY) distance:344
+16: Richfield (UT) to Rock Springs (WY) distance:342
+17: Roswell (NM) to San Angelo (TX) distance:320
+18: Salina (KS) to Seminole (OK) distance:303
+19: Rockford (IL) to Saint Louis (MO) distance:296
+20: Seattle (WA) to Spokane (WA) distance:295
+21: Richmond (IN) to Saginaw (MI) distance:293
+22: Rochester (NY) to Rutland (VT) distance:291
+23: Reading (PA) to Rochester (NY) distance:281
+24: Valley City (ND) to Winnipeg (MB) distance:278
+25: Saginaw (MI) to Sault Sainte Marie (MI) distance:272
+26: Rochester (MN) to Rockford (IL) distance:267
+27: Rhinelander (WI) to Rochester (MN) distance:260
+28: Reading (PA) to Richmond (VA) distance:249
+29: Saint Joseph (MO) to Sioux City (IA) distance:246
+30: Salem (OR) to Seattle (WA) distance:241
+31: Salt Lake City (UT) to Twin Falls (ID) distance:236
+32: Saint Augustine (FL) to Sarasota (FL) distance:236
+33: Saint Cloud (MN) to Valley City (ND) distance:233
+34: San Angelo (TX) to San Antonio (TX) distance:218
+35: Sherman (TX) to Shreveport (LA) distance:216
+36: Roanoke (VA) to Williamson (WV) distance:213
+37: Selma (AL) to Tupelo (MS) distance:211
+38: Saint Augustine (FL) to Tallahassee (FL) distance:200
+39: Sarasota (FL) to West Palm Beach (FL) distance:198
+40: Red Bluff (CA) to Reno (NV) distance:198
+41: Saint Joseph (MO) to Salina (KS) distance:196
+42: Saint Augustine (FL) to Savannah (GA) distance:196
+43: Roswell (NM) to Santa Fe (NM) distance:196
+44: Richmond (IN) to Sandusky (OH) distance:191
+45: Regina (SA) to Williston (ND) distance:188
+46: Shreveport (LA) to Vicksburg (MS) distance:186
+47: Sacramento (CA) to Salinas (CA) distance:185
+48: Rockford (IL) to Saint Joseph (MI) distance:180
+49: Richmond (VA) to Roanoke (VA) distance:168
+50: Richfield (UT) to Salt Lake City (UT) distance:164
+51: Sandusky (OH) to Steubenville (OH) distance:162
+52: Rochester (NY) to Toronto (ON) distance:161
+53: Spokane (WA) to Walla Walla (WA) distance:160
+54: Reading (PA) to Salisbury (MD) distance:160
+55: Rochester (NY) to Warren (PA) distance:158
+56: Salida (CO) to Trinidad (CO) distance:157
+57: Savannah (GA) to Sumter (SC) distance:156
+58: Seattle (WA) to Wenatchee (WA) distance:153
+59: Rochester (MN) to Saint Cloud (MN) distance:152
+60: Saginaw (MI) to Traverse City (MI) distance:150
+61: Seattle (WA) to Vancouver (BC) distance:145
+62: Saint Joseph (MO) to Sedalia (MO) distance:142
+63: Richmond (IN) to Terre Haute (IN) distance:138
+64: Tyler (TX) to Waco (TX) distance:134
+65: Red Bluff (CA) to Sacramento (CA) distance:131
+66: San Bernardino (CA) to San Diego (CA) distance:130
+67: Santa Ana (CA) to Santa Barbara (CA) distance:128
+68: Seminole (OK) to Sherman (TX) distance:127
+69: Rocky Mount (NC) to Wilmington (NC) distance:127
+70: Scottsbluff (NB) to Sterling (CO) distance:126
+71: Richmond (VA) to Rocky Mount (NC) distance:120
+72: Wenatchee (WA) to Yakima (WA) distance:117
+73: Sioux Falls (SD) to Watertown (SD) distance:117
+74: Sherman (TX) to Wichita Falls (TX) distance:117
+75: Sedalia (MO) to Springfield (MO) distance:115
+76: Rochester (MN) to Waterloo (IA) distance:115
+77: San Antonio (TX) to Victoria (TX) distance:113
+78: Richmond (VA) to Washington (DC) distance:110
+79: Roanoke (VA) to Winston-Salem (NC) distance:109
+80: Reading (PA) to Scranton (PA) distance:109
+81: Schenectady (NY) to Springfield (MA) distance:106
+82: Red Bluff (CA) to Weed (CA) distance:105
+83: Rutland (VT) to Saint Johnsbury (VT) distance:103
+84: Saint Louis (MO) to Springfield (IL) distance:102
+85: Shreveport (LA) to Tyler (TX) distance:99
+86: Seminole (OK) to Tulsa (OK) distance:95
+87: Savannah (GA) to Swainsboro (GA) distance:94
+88: Sacramento (CA) to San Francisco (CA) distance:94
+89: Scranton (PA) to Williamsport (PA) distance:93
+90: Rhinelander (WI) to Stevens Point (WI) distance:92
+91: Rutland (VT) to Schenectady (NY) distance:90
+92: Sioux City (IA) to Sioux Falls (SD) distance:88
+93: Rochester (NY) to Syracuse (NY) distance:88
+94: Roanoke (VA) to Staunton (VA) distance:88
+95: Salina (KS) to Wichita (KS) distance:87
+96: Selma (AL) to Tuscaloosa (AL) distance:85
+97: Saint Joseph (MO) to Topeka (KS) distance:85
+98: Tallahassee (FL) to Valdosta (GA) distance:82
+99: Stevens Point (WI) to Wisconsin Dells (WI) distance:78
+100: Saint Cloud (MN) to Saint Paul (MN) distance:75
+101: Washington (DC) to Winchester (VA) distance:73
+102: Shreveport (LA) to Texarkana (TX) distance:73
+103: Steubenville (OH) to Uniontown (PA) distance:72
+104: Rockford (IL) to Waukegan (IL) distance:72
+105: Syracuse (NY) to Watertown (NY) distance:71
+106: Uniontown (PA) to Wheeling (WV) distance:69
+107: Stroudsburg (PA) to Trenton (NJ) distance:69
+108: Sioux City (IA) to Yankton (SD) distance:67
+109: Richmond (IN) to Springfield (OH) distance:64
+110: Valdosta (GA) to Waycross (GA) distance:63
+111: Steubenville (OH) to Youngstown (OH) distance:60
+112: Terre Haute (IN) to Vincennes (IN) distance:58
+113: Reading (PA) to Wilmington (DE) distance:57
+114: Springfield (MA) to Waterbury (CT) distance:56
+115: San Francisco (CA) to Santa Rosa (CA) distance:55
+116: Sandusky (OH) to Toledo (OH) distance:54
+117: San Bernardino (CA) to Santa Ana (CA) distance:54
+118: Sarasota (FL) to Tampa (FL) distance:53
+119: Syracuse (NY) to Utica (NY) distance:51
+120: Springfield (MA) to Worcester (MA) distance:50
+121: San Francisco (CA) to San Jose (CA) distance:47
+122: Sacramento (CA) to Stockton (CA) distance:47
+123: Saint Joseph (MI) to South Bend (IN) distance:44
+124: Scranton (PA) to Stroudsburg (PA) distance:42
+125: Stevens Point (WI) to Wausau (WI) distance:33
+126: Seattle (WA) to Tacoma (WA) distance:30
+*Distance is :26633
