@@ -63,25 +63,32 @@ int main(int argc, char *argv[])
 	cin>>n;
 	//change to seeded by time
 	srand(700453594);
-	int arr[n];
-	arr[n]=10001;
-	int c[n];
-	int u[n];
+	int arr[n+1];
+	int u[n+1];
+	int c[n+1];
+
 	for(int i=0; i<n; i++)
 	{
 		c[i]=i;
 		arr[i]=rand()%10000;
 		u[i]=arr[i];
 	}
+
+	c[n]=n;
+	arr[n]=10001;
+	u[n]=10001;
+
 	quickSort(u, 0, n-1, c);
-	for(int i=0; i<n; i++)
+
+	for(int i=0; i<n+1; i++)
 	{
 		if(i%10==0&&i!=0)
 			cout<<endl;
 		cout<<c[i]<<"\t";
 	}
 	cout<<endl;
-	for(int i=0; i<n; i++)
+	
+	for(int i=0; i<n+1; i++)
 	{
 		if(i%10==0&&i!=0)
 			cout<<endl;
