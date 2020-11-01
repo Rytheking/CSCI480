@@ -63,15 +63,13 @@ int main(int argc, char *argv[])
 	{
 		arr[i]=rand()%10000;
 		myfile<<i<<" "<<arr[i]<<"\n";
-
 	}
 	arr[n+1]=10001;
 	myfile.close();
 	quickSort(arr, 0, n-1);
 	for(int i=0; i<n; i++)
 	{
-		
-		if(i%10==0)
+		if(i%10==0&&i!=0)
 			cout<<endl;
 		cout<<arr[i]<<"\t";
 	}
