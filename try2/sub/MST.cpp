@@ -38,6 +38,7 @@ int countOFEdges=0;
 int distancetot;
 fstream file;
 
+int dis=0;
 #define MAX 9999999;
 
 //Node Structure and functions (to be put into header file)
@@ -110,9 +111,9 @@ struct City{
 	City* next=NULL;
 	Edge* list=NULL;
 };
-void insert_End(struct City** start, int new_index,string new_data){
-	struct City* newCity = new City;
-	struct City* last = *start;
+void insert_End(City** start, int new_index,string new_data){
+	City* newCity = new City;
+	City* last = *start;
 	newCity->index = new_index;
 	newCity->name = new_data;
 	newCity->next=NULL;
@@ -130,8 +131,8 @@ void insert_End(struct City** start, int new_index,string new_data){
 	return;
 	
 }
-void insert_End(struct City** start,  struct City* newCity){
-	struct City* last = *start;
+void insert_End(City** start,  City* newCity){
+	City* last = *start;
 	newCity->next=NULL;
 	if(*start == NULL)
 	{
@@ -146,19 +147,19 @@ void insert_End(struct City** start,  struct City* newCity){
 	return;
 	
 }
-void insert_Front(struct City** start,  int index, string name){
-	struct City* newCity = new City;
+void insert_Front(City** start,  int index, string name){
+	City* newCity = new City;
 	newCity->name = name;
 	newCity->index= index;
 	newCity->next = *start;
 	*start = newCity;
 }
-void insert_Front(struct City** start,  struct City* newCity){
+void insert_Front(City** start,  City* newCity){
  
 	newCity->next = *start;
 	*start = newCity;
 }
-void displayCity(struct City* city){ 
+void displayCity(City* city){ 
 	while (city!= NULL)
 	{
 		cout<<city->index<<":"<<city->name<<endl;
@@ -166,7 +167,7 @@ void displayCity(struct City* city){
 		city = city->next;
 	}
 }
-City *findCity(struct City* city, int key){
+City *findCity(City* city, int key){
 	while(city!=NULL)
 	{
 		if(city->index==key)
@@ -175,10 +176,10 @@ City *findCity(struct City* city, int key){
 		}
 		city=city->next;
 	}
-	struct City* j=new City;
+	City* j=new City;
 	return j;
 }
-City* findIndex(struct City* city, string key){
+City* findIndex(City* city, string key){
 	while(city!=NULL)
 	{
 		if(city->name==key)
@@ -187,7 +188,7 @@ City* findIndex(struct City* city, string key){
 		}
 		city=city->next;
 	}
-	struct City* j=new City;
+	City* j=new City;
 	return j;
 }
 
@@ -199,15 +200,15 @@ struct Edge{
 	int weight;
 	Edge* next=NULL;
 };
-void insert_Front(struct Edge** start,  int cost){
-	struct Edge* newEdge = new Edge;
+void insert_Front(Edge** start,  int cost){
+	Edge* newEdge = new Edge;
 	newEdge->weight= cost;
 	newEdge->next = *start;
 	*start = newEdge;
 }
-void insert_End(struct Edge** start,  int cost){
-	struct Edge* newEdge = new Edge;
-	struct Edge* last = *start;
+void insert_End(Edge** start,  int cost){
+	Edge* newEdge = new Edge;
+	Edge* last = *start;
 	newEdge->weight = cost;
 	if(*start == NULL)
 	{
@@ -222,15 +223,18 @@ void insert_End(struct Edge** start,  int cost){
 	return;
 	
 }
-void displayEdge(struct Edge* edge){ 
+void displayEdge(Edge* edge){ 
+	int totweight=0;
 	while (edge->next!=NULL)
 	{
 		cout<<edge->start->name<<" to "<<edge->end->name<<" distance: "<<edge->weight<<endl;
+		totweight+=edge->weight;
 		edge = edge->next;
 	}
+	cout<<"*Distance Total: "<<totweight<<"\n";
 }
 void cleanEdge(Edge **edge){
-	struct Edge* temp = *edge, *prev;
+	Edge* temp = *edge, *prev;
 	while (temp != NULL&&temp->start!=NULL)
 	{
 		prev=temp;
@@ -327,7 +331,7 @@ void splitEdge(Edge* head, Edge** a, Edge** b){
 	second->next=NULL;
 	
 }
-void mergeSortEdge(struct Edge** list){
+void mergeSortEdge(Edge** list){
 	
 	Edge* head=*list;
 	Edge* a;
@@ -452,7 +456,7 @@ Edge* cityToEdge(struct City* city){
 	cleanEdge(&edge);
 	return edge;
 }
-Edge* KruskalMST(Graph* graph){
+Edge* KruskalMST(Graph* graph, int a){
 	int V=graph->V;
 	Edge* newEdges=new Edge;
 	Edge result[V];
@@ -466,7 +470,6 @@ Edge* KruskalMST(Graph* graph){
 		subsets[v].parent=v;
 		subsets[v].rank=0;
 	}
-	int totweight=0;
 	while (e < V-1 && i < countOFEdges)  
 {
         Edge next_edge = graph->edge[i++]; 
@@ -480,29 +483,18 @@ Edge* KruskalMST(Graph* graph){
             insert_Front(&newEdges, next_edge.weight);
             newEdges->start=next_edge.start;
             newEdges->end=next_edge.end;
-            insert_Front(&newEdges, next_edge.weight);
-            newEdges->start=next_edge.end;
-            newEdges->end=next_edge.start;
+            if(a==1)
+            {
+				insert_Front(&newEdges, next_edge.weight);
+				newEdges->start=next_edge.end;
+				newEdges->end=next_edge.start;
+			}
             Union(subsets, x, y);
               
         }  
         
     }
-    
-    ofstream myfile;
-	myfile.open("map.txt");
-
-	for (i = 0; i < e; ++i)
-		totweight+=result[i].weight;
-	myfile<<"*Distance is :" <<totweight<<endl;
-    for (i = 0; i < e; ++i) {
-		myfile<<i+1<<": "<<result[i].start->name<<" to "<<result[i].end->name<<" distance= "<<result[i].weight<<endl;
-		totweight+=result[i].weight;
-	}
-	distancetot=totweight;
-	
     return newEdges;   
-	
 }
 
 
@@ -511,21 +503,19 @@ int main(int argc, char *argv[])
 {
 	string a=argv[0];
 	if(a=="./MST"){
-		Edge* newEdges=KruskalMST(createGraph(countOfCities, countOFEdges, (cityToEdge(readDisFile(argv[1])))));
+		Edge* newEdges=KruskalMST(createGraph(countOfCities, countOFEdges, (cityToEdge(readDisFile(argv[1])))), 0);
 		displayEdge(newEdges);
 	}
 	else if(a=="./journey"&&argc==4){
+		City* city =readDisFile(argv[1]);
+		Edge* edges=KruskalMST(createGraph(countOfCities, countOFEdges, (cityToEdge(city))),1);
 		string startCity=argv[2], endCity=argv[3];
-		City * city=readDisFile(argv[1]);
-		Edge* edges=cityToEdge(city);
 		Edge* plc=edges;
-		struct City *startC=findIndex(city,startCity);
-		struct City *endC=findIndex(city,endCity);
+		City *startC=findIndex(city,startCity);
+		City *endC=findIndex(city,endCity);
 		startC->next=0;
-		struct City *queue= startC;
+		City *queue= startC;
 		queue->distFromStart=0;
-		int weight;
-		weight=0;
 		int c = MAX;
 		queue->list=new Edge;
 		while(queue!=NULL)
@@ -547,7 +537,16 @@ int main(int argc, char *argv[])
 			queue=queue->next;
 		}
 		cout<<startC->name<<" to "<<endC->name<<" Distance is:"<<endC->distFromStart<<endl;
-		displayEdge(endC->list);
+		Edge* edge2=new Edge;
+		Edge* plc2 = endC->list;
+		while (plc2->next!=NULL)
+		{
+			insert_Front(&edge2, plc2->weight);
+			edge2->start=plc2->start;
+			edge2->end=plc2->end;
+			plc2=plc2->next;
+		}
+		displayEdge(edge2);
 		
 	}
 	else if(a=="./journey" && argc!=4)

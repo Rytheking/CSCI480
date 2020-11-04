@@ -18,82 +18,64 @@
 #include <chrono>
 #include <cstdlib>
 #include <string>
+#include "qsort.h"
 
 using namespace std;
 
 
-int partition(int arr[], int lower, int upper, int c[]){
-	int i,j,pivot,temp;
-	pivot=arr[upper];
-	i=lower-1;
-	for(int j=lower; j<=upper-1;j++)
-	{
-		if(arr[j] <= pivot)
-		{
-			i++;
-			temp=arr[i];
-			arr[i]=arr[j];
-			arr[j]=temp;
-			temp=c[i];
-			c[i]=c[j];
-			c[j]=temp;
-		}
-	}
-	temp=arr[i+1];
-	arr[i+1]=arr[upper];
-	arr[upper]=temp;
-	temp=c[i+1];
-	c[i+1]=c[upper];
-	c[upper]=temp;
-	return i+1;
-}
-void quickSort(int arr[], int lower, int upper, int c[]){
-	int j;
-	if(lower<upper)
-	{
-		j=partition(arr,lower,upper,c);
-		quickSort(arr,lower,j-1,c);
-		quickSort(arr,j+1,upper,c);
-	}
-}
 
-int main(int argc, char *argv[])
-{
-	int n;
-	cin>>n;
+int main(int argc, char *argv[]){
+	bool invalidinput=false;
+	int * A;
+	int * I;
+int n;
+	while(!invalidinput)
+	{
+		cout<<"How many elements would you like to sort? (10k is max)"<<endl;
+		cin>>n;
+		invalidinput=n<=10000;
+		if(!invalidinput)
+			cout<<"I'm sorry "<<n<<" is over the 10k limit by "<<n-10000<<endl;
+	}
+	
+	A = (int *) malloc((n+1)*sizeof(int));
+	I = (int *) malloc((n+1)*sizeof(int));
 	//change to seeded by time
-	srand(700453594);
-	int arr[n+1];
-	int u[n+1];
-	int c[n+1];
-
+	srand(70);
 	for(int i=0; i<n; i++)
 	{
-		c[i]=i;
-		arr[i]=rand()%10000;
-		u[i]=arr[i];
+		I[i]=i;
+		A[i]=rand()%10000;
 	}
-
-	c[n]=n;
-	arr[n]=10001;
-	u[n]=10001;
-
-	quickSort(u, 0, n-1, c);
-
-	for(int i=0; i<n+1; i++)
+	I[n]=n;
+	A[n]=n+1;
+	quickSort(A, I, 0, n-1);
+	cout<<endl;
+	cout<<"Array"<<endl;
+	for(int i=0; i<n; i++)
 	{
 		if(i%10==0&&i!=0)
 			cout<<endl;
-		cout<<c[i]<<"\t";
+		cout<<A[i]<<"\t";
 	}
 	cout<<endl;
-	
-	for(int i=0; i<n+1; i++)
+	cout<<"Sorted index array"<<endl;
+	for(int i=0; i<n; i++)
 	{
 		if(i%10==0&&i!=0)
 			cout<<endl;
-		cout<<arr[i]<<"\t";
+		cout<<I[i]<<"\t";
 	}
 	cout<<endl;
+	cout<<"Sorted array (acheived by iterating through unchanged array using index[i] as the call index)"<<endl;
+	for(int i=0; i<n; i++)
+	{
+		if(i%10==0&&i!=0)
+			cout<<endl;
+		cout<<A[I[i]]<<"\t";
+	}
+	cout<<endl;
+	free(A);
+	free(I);
 	return 0;
 }
