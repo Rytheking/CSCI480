@@ -21,22 +21,21 @@ int main(int argc, char *argv[]){
 			cout<<"I'm sorry "<<n<<" is over the 10k limit by "<<n-1000<<endl;
 	}
 	cout<<"a"<<endl;
-	A = (int *) malloc((n+1)*sizeof(int));
-	I = (int *) malloc((n+1)*sizeof(int));
+	A = (int *) malloc((n)*sizeof(int));
+	I = (int *) malloc((n)*sizeof(int));
 	srand(70);
 	for(int i=0; i<n; i++)
 	{
 		I[i]=i;
 		A[i]=rand()%10000;
 	}
-	quickSort(A,I,0,n-1);
 	int k;
 	while(1){
 		cout<<"input k value"<<endl;
 		cin>>k;
 		if(k<n&&0<k)
 		{
-		cout<<"K: "<<A[kthValue(I,n, k)]<<endl;
+			kthValue(A,n, k);
 		}
 		else
 			break;
