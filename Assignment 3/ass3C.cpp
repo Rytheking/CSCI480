@@ -9,6 +9,12 @@
 
 using namespace std;
 
+
+string cleanword(string word){
+    if(word)
+    return word;
+}
+
 int main(int argc, char *argv[])
 {
     cout<<"What would you like to run?"<<endl;
@@ -32,7 +38,54 @@ int main(int argc, char *argv[])
     }
     else if(c==3)
     {
-        //do task 4
+        ifstream file;
+        ofstream myfile;
+        file.open("Pride and Prejudice.txt");
+        myfile.open("book.txt");
+        if(!file.is_open()) return 1;
+        string line, holder, word;
+        int i=0,j=0,sentences=0,commas=0,words=0,quotationmarks=0,exclamationpoints=0,chapters=0, punc,quote,space,underbar,dash;
+        while(getline(file, line))
+        {
+            i++;
+            if(i>30&&i<13061)
+            {
+                int space=line.find(' ');
+                word=line.substr(0,space);
+                quote=word.find('"');
+                if(quote!=-1)
+                    word=word.substr(word.find)
+                punc=word.find('.');
+                if(punc!=-1){
+                    sentences++;
+                    if(word=="Mr." or word=="Mrs." or word=="St." or word=="M.")
+                    {
+                        sentences--;
+                    }
+                    else
+                    {
+                            myfile<<word<<endl;
+                    }
+                    
+                }
+                else if(punc==-1){
+                    punc=word.find('!');
+                    if(punc!=-1){
+                        sentences++;
+                        myfile<<word<<endl;
+                    }
+                }
+                else if(punc==-1){
+                    punc=word.find('?');
+                    if(punc!=-1){
+                        sentences++;
+                        myfile<<word<<endl;
+                    }
+                }
+            }
+            
+        }
+        cout<<sentences<<endl;
     }
     return 0;
 }
