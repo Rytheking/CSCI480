@@ -9,10 +9,14 @@
 
 using namespace std;
 
-
-string cleanword(string word){
-    if(word)
-    return word;
+string lowerit(string s)
+{
+    for(int i=0; i<s.length(); i++)
+    {
+        if(s[i]<91 and s[i]>64)
+            s[i]+=32;
+    }
+    return s;
 }
 
 int main(int argc, char *argv[])
@@ -50,40 +54,57 @@ int main(int argc, char *argv[])
             i++;
             if(i>30&&i<13061)
             {
-                int space=line.find(' ');
-                word=line.substr(0,space);
-                quote=word.find('"');
-                if(quote!=-1)
-                    word=word.substr(word.find)
-                punc=word.find('.');
-                if(punc!=-1){
-                    sentences++;
-                    if(word=="Mr." or word=="Mrs." or word=="St." or word=="M.")
+                if(line.length()==1)
+                {}
+                else
+                    //cout<<line<<endl;
+                holder=line.substr(0,line.length()-1);
+                while(holder.length()!=0)
+                {
+                    while(holder.length()!=0 and holder[0]!=' ')
                     {
-                        sentences--;
+                        if(holder[0]!='-' and holder[0]!='_' and holder[0]!='"' and holder[0]!=',' and holder[0]!=';' and holder[0]!='\'')
+                        {
+
+                            if((holder[0]=='.' and word!="Mr" and word!="Mrs" and word!="M" and word!="St") or ( holder[0]=='?') or (holder[0]=='!'))
+                            {   
+                                if(holder[1]=='"')
+                                    if((holder[3]<91 and holder[3]>64) or holder[3]==44)
+                                    {
+                                        sentences++;
+                                        myfile<<lowerit(word)<<endl;
+                                        word="";
+                                        holder=holder.substr(1,holder.length());
+                                         break;
+                                    }
+                                sentences++;
+                                myfile<<lowerit(word)<<endl;
+                                word="";
+                                holder=holder.substr(1,holder.length());
+                                break;
+                            }
+                            else
+                            {
+                                word+=holder[0];
+                            }
+                        holder=holder.substr(1,holder.length());  
+                        }
+                        else 
+                        {
+                                if(word.length()!=0)
+                                    myfile<<lowerit(word)<<" ";
+                                word="";
+                                break;
+                        }
                     }
-                    else
-                    {
-                            myfile<<word<<endl;
-                    }
-                    
+                    if(word.length()!=0)
+                       myfile<<lowerit(word)<<" ";
+                    word="";
+                    if(holder.length()!=0)
+                        holder=holder.substr(1,holder.length());
                 }
-                else if(punc==-1){
-                    punc=word.find('!');
-                    if(punc!=-1){
-                        sentences++;
-                        myfile<<word<<endl;
-                    }
-                }
-                else if(punc==-1){
-                    punc=word.find('?');
-                    if(punc!=-1){
-                        sentences++;
-                        myfile<<word<<endl;
-                    }
-                }
+                
             }
-            
         }
         cout<<sentences<<endl;
     }
