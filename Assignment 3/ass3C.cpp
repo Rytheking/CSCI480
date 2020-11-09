@@ -4,21 +4,25 @@
 #include <cstdlib>
 #include <string>
 #include "qsort.h"
+#include "vectorf.h"
 #include "hashtable.h"
-#include "heapsort.h"
+#include "heaprf.h"
 
 using namespace std;
 
 string lowerit(string s)
 {
-    for(int i=0; i<s.length(); i++)
+    for(unsigned i=0; i<s.length(); i++)
     {
         if(s[i]<91 and s[i]>64)
             s[i]+=32;
     }
     return s;
 }
-
+struct wordCount{
+    string word;
+    int count;
+};
 int main(int argc, char *argv[])
 {
     cout<<"What would you like to run?"<<endl;
@@ -32,53 +36,52 @@ int main(int argc, char *argv[])
     {
         exit(1);
     }
-    else if(c==1)
-    {
-        //call ass3A
-    }
-    else if(c==2)
-    {
-        //call ass3B
-    }
     else if(c==3)
     {
         ifstream file;
         ofstream myfile;
+        vectoRF<string> words;
+        HashMap<int, wordCount> map;
         file.open("Pride and Prejudice.txt");
         myfile.open("book.txt");
         if(!file.is_open()) return 1;
-        string line, holder, word;
-        int i=0,j=0,sentences=0,commas=0,words=0,quotationmarks=0,exclamationpoints=0,chapters=0, punc,quote,space,underbar,dash;
+        string line, holder, word, hold;
+        int i=0,sentences=0,j=0;
         while(getline(file, line))
         {
             i++;
             if(i>30&&i<13061)
             {
-                if(line.length()==1)
-                {}
-                else
-                    //cout<<line<<endl;
+                
                 holder=line.substr(0,line.length()-1);
                 while(holder.length()!=0)
                 {
                     while(holder.length()!=0 and holder[0]!=' ')
                     {
-                        if(holder[0]!='-' and holder[0]!='_' and holder[0]!='"' and holder[0]!=',' and holder[0]!=';' and holder[0]!='\'')
+                        if(holder[0]!='-' and holder[0]!='_' and holder[0]!='"' and holder[0]!=',' and holder[0]!=';')
                         {
 
                             if((holder[0]=='.' and word!="Mr" and word!="Mrs" and word!="M" and word!="St") or ( holder[0]=='?') or (holder[0]=='!'))
                             {   
-                                if(holder[1]=='"')
+                                if(holder[1]=='"'){
                                     if((holder[3]<91 and holder[3]>64) or holder[3]==44)
                                     {
                                         sentences++;
                                         myfile<<lowerit(word)<<endl;
+                                        hold=lowerit(word);
+                                        cout<<hold<<endl;
+                                        //words.push(hold);
+                                        j++;
                                         word="";
                                         holder=holder.substr(1,holder.length());
-                                         break;
+                                        break;
                                     }
+                                }
                                 sentences++;
                                 myfile<<lowerit(word)<<endl;
+                                hold=lowerit(word);
+                                cout<<hold<<endl;
+                                //words.push(hold);
                                 word="";
                                 holder=holder.substr(1,holder.length());
                                 break;
@@ -92,13 +95,23 @@ int main(int argc, char *argv[])
                         else 
                         {
                                 if(word.length()!=0)
+                                {
                                     myfile<<lowerit(word)<<" ";
+                                    hold=lowerit(word);
+                                    cout<<hold<<endl;
+                                    //words.push(hold);
+                                } 
                                 word="";
                                 break;
                         }
                     }
                     if(word.length()!=0)
-                       myfile<<lowerit(word)<<" ";
+                    {
+                        myfile<<lowerit(word)<<" ";
+                        cout<<lowerit(word)<<endl;
+                        //words.push(lowerit(word));
+                        j++;
+                    }
                     word="";
                     if(holder.length()!=0)
                         holder=holder.substr(1,holder.length());
@@ -107,6 +120,8 @@ int main(int argc, char *argv[])
             }
         }
         cout<<sentences<<endl;
+        cout<<j<<endl;
+        //words.print();
     }
     return 0;
 }

@@ -6,20 +6,14 @@
 #include "qsort.h"
 using namespace std;
 
-void swap(int * a, int * b){
-	int temp = *a;
-	*a=*b;
-	*b=temp;
-}
-
 void sort3(int& a, int& b, int& c){
 	//X[A]<=X[B]<=X[C]
 	if (c < a)
-        swap(&a, &c);        
+        swap(a, c);        
     if (b < a)
-        swap(&b, &a);
+        swap(b, a);
     if (c < b)
-        swap(&c, &b);
+        swap(c, b);
 
 		
 }

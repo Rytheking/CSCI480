@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS= -g -Wall
-DEPS = qsort.h heapsort.h hashtable.h
+DEPS = qsort.h heapsort.h hashtable.h vectorf.h
 FILES = qsort.cpp heapsort.cpp hashtable.cpp
 
 ass3C: ass3C.cpp ass3B.o ass3A.o $(DEPS) $(FILES)
