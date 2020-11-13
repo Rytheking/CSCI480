@@ -15,10 +15,31 @@ class HashNode
     public:
         V value;
         K key;
+        HashNode * next;
     HashNode(K key, V value)
     {
         this->value =value;
         this->key=key;
+    }
+    HashNode<K,V> getNext()
+    {
+        return this->next;
+    }
+    V getValue()
+    {
+        return this->value;
+    }
+    K getKey()
+    {
+        return this->key;
+    }
+    void setValue(V value)
+    {
+        this->value=value;
+    }
+    void setNext(HashNode<K,V>* next)
+    {
+        this->next=next;
     }
 };
 
@@ -26,39 +47,93 @@ template<typename K, typename V>
 class HashMap
 {
     HashNode<K,V> **arr;
+    double thresh=.80;
+    int maxSize;
     int capacity;
     int size;
     HashNode<K,V> *dummy;
 
     public:
+
+    void resize()
+    {
+        int oldTableSize = capacity;
+        capacity*=2;
+        maxSize= (int) (capacity * thresh);
+        HashNode<K,V> **oldArr=arr;
+        arr=new HashNode<K,V>*[capacity];
+        for(int i=0; i<capacity; i++)
+        {
+            arr[i]=NULL;
+        }
+        size=0;
+        for (int hash = 0; hash < oldTableSize; hash++)
+        {
+                  if (oldArr[hash] != NULL) {
+                        HashNode<K,V> *oldEntry;
+                        HashNode<K,V> *entry = oldArr[hash];
+                        while (entry != NULL) {
+                             insertNode(entry->getKey(), entry->getValue());
+                             oldEntry = entry;
+                             entry = entry->next;
+                             delete oldEntry;
+                        }
+                  }
+        }
+        delete[] oldArr;
+    }
     HashMap()
     {
-        capacity=150000;
+        capacity=5;
         size=0;
+        maxSize=thresh*capacity;
         arr=new HashNode<K,V>*[capacity];
         for(int i=0; i<capacity;i++)
         {
             arr[i]=NULL;
         }
-        dummy=new HashNode<K,V>(-1,-1);
+        //dummy=new HashNode<K,V> (-1,-1);
     }
+    void setThreshold(float threshold) {
+
+            this->threshold = threshold;
+
+            maxSize = (int) (capacity * threshold);
+      }
     int hashCode(K key)
     {
-        return key %capacity;
+        int hashVal=0, len=key.length();
+        for(int i=0; i<len;i++)
+            hashVal+= key[i];
+        return hashVal;
     }
 
     void insertNode(K key, V value)
     {
         HashNode<K,V> *temp = new HashNode<K,V>(key,value);
         int hashIndex=hashCode(key);
-        while(arr[hashIndex]!=NULL and arr[hashIndex]->key != key and arr[hashIndex]->key != -10)
+        cout<<hashIndex<<endl;
+        if(arr[hashIndex] == NULL)
         {
-            hashIndex++;
-            hashIndex %=capacity;
+            arr[hashIndex]=new HashNode<K,V>(key, value);
+            size++;
+        } 
+        else
+        {
+            HashNode<K,V> *entry = arr[hashIndex];
+            while(entry->next!=NULL)
+                entry=entry->next;
+            if(entry->getKey() == key)
+                entry->setValue(value);
+            else
+            {
+                    entry->setNext(temp);
+                    size++;
+            }
+            
         }
-        if(arr[hashIndex] == NULL || arr[hashIndex]->key == -1) 
-            size++; 
-        arr[hashIndex] = temp; 
+        if(size>=maxSize)
+            resize();
     }
     //Function to search the value for a given key 
     V get(int key) 
@@ -99,7 +174,7 @@ class HashMap
     { 
         for(int i=0 ; i<capacity ; i++) 
         { 
-            if(arr[i] != NULL && arr[i]->key != -1) 
+            if(arr[i] != NULL) 
                 cout << "key = " << arr[i]->key  
                      <<"  value = "<< arr[i]->value << endl; 
         } 

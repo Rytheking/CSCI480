@@ -25,19 +25,6 @@ struct wordCount{
 };
 int main(int argc, char *argv[])
 {
-    cout<<"What would you like to run?"<<endl;
-    cout<<"0: Terminate Program (exit)"<<endl;
-    cout<<"1: Task 1 & 2: Index quicksort using median of 3"<<endl;
-    cout<<"2: Task 3: Kth value finder(ass3B)"<<endl;
-    cout<<"3: Task 4: Pride and Prejudice Heapsort with hashtable (ass3C)"<<endl;
-    int c;
-    cin>>c;
-    if(c==0)
-    {
-        exit(1);
-    }
-    else if(c==3)
-    {
         ifstream file;
         ofstream myfile;
         vectoRF<string> words;
@@ -46,13 +33,12 @@ int main(int argc, char *argv[])
         myfile.open("book.txt");
         if(!file.is_open()) return 1;
         string line, holder, word, hold;
-        int i=0,sentences=0,j=0;
+        int i=0,sentences=0;
         while(getline(file, line))
         {
             i++;
             if(i>30&&i<13061)
             {
-                
                 holder=line.substr(0,line.length()-1);
                 while(holder.length()!=0)
                 {
@@ -69,9 +55,6 @@ int main(int argc, char *argv[])
                                         sentences++;
                                         myfile<<lowerit(word)<<endl;
                                         hold=lowerit(word);
-                                        cout<<hold<<endl;
-                                        //words.push(hold);
-                                        j++;
                                         word="";
                                         holder=holder.substr(1,holder.length());
                                         break;
@@ -79,9 +62,6 @@ int main(int argc, char *argv[])
                                 }
                                 sentences++;
                                 myfile<<lowerit(word)<<endl;
-                                hold=lowerit(word);
-                                cout<<hold<<endl;
-                                //words.push(hold);
                                 word="";
                                 holder=holder.substr(1,holder.length());
                                 break;
@@ -97,9 +77,6 @@ int main(int argc, char *argv[])
                                 if(word.length()!=0)
                                 {
                                     myfile<<lowerit(word)<<" ";
-                                    hold=lowerit(word);
-                                    cout<<hold<<endl;
-                                    //words.push(hold);
                                 } 
                                 word="";
                                 break;
@@ -108,9 +85,6 @@ int main(int argc, char *argv[])
                     if(word.length()!=0)
                     {
                         myfile<<lowerit(word)<<" ";
-                        cout<<lowerit(word)<<endl;
-                        //words.push(lowerit(word));
-                        j++;
                     }
                     word="";
                     if(holder.length()!=0)
@@ -119,9 +93,7 @@ int main(int argc, char *argv[])
                 
             }
         }
-        cout<<sentences<<endl;
-        cout<<j<<endl;
-        //words.print();
-    }
+        cout<<"Sentences: "<<sentences<<endl;
+    
     return 0;
 }

@@ -13,13 +13,14 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     ifstream file;
-    file.open("book.txt");
+    file.open("test.txt");
     string word;
-    vectoRF<string> heap;
+    HashMap<string,int> map;
+    int i=0;
     while(file>>word)
     {
-        cout<<word<<endl;
-        heap.push(word);
+        map.insertNode(word, i++);
+        
     }
-    heap.print();
+    //map.display();
 }
